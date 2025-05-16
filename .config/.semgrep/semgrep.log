@@ -1,0 +1,144 @@
+2025-05-12 04:16:07,952 - semgrep.notifications - WARNING - METRICS: Using configs from the Registry (like --config=p/ci) reports pseudonymous rule metrics to semgrep.dev.
+To disable Registry rule metrics, use "--metrics=off".
+Using configs only from local files (like --config=xyz.yml) does not enable metrics.
+
+More information: https://semgrep.dev/docs/metrics
+
+2025-05-12 04:16:07,954 - semgrep.run_scan - DEBUG - semgrep version 1.2.0
+2025-05-12 04:16:07,967 - semgrep.git - DEBUG - Failed to get project url from 'git ls-remote': Command failed with exit code: 128
+-----
+Command failed with output:
+fatal: No remote configured to list refs from.
+
+
+Failed to run 'git ls-remote --get-url'. Possible reasons:
+
+- the git binary is not available
+- the current working directory is not a git repository
+- the baseline commit is not a parent of the current commit
+    (if you are running through semgrep-app, check if you are setting `SEMGREP_BRANCH` or `SEMGREP_BASELINE_COMMIT` properly)
+- the current working directory is not marked as safe
+    (fix with `git config --global --add safe.directory $(pwd)`)
+
+Try running the command yourself to debug the issue.
+2025-05-12 04:16:07,968 - semgrep.config_resolver - DEBUG - Loading local config from /home/runner/workspace/.config/.semgrep/semgrep_rules.json
+2025-05-12 04:16:07,972 - semgrep.config_resolver - DEBUG - Done loading local config from /home/runner/workspace/.config/.semgrep/semgrep_rules.json
+2025-05-12 04:16:07,977 - semgrep.config_resolver - DEBUG - Saving rules to /tmp/semgrep-2z3y_reg.rules
+2025-05-12 04:16:08,336 - semgrep.semgrep_core - DEBUG - Failed to open resource semgrep-core-proprietary: [Errno 2] No such file or directory: '/tmp/_MEI3C29zQ/semgrep/bin/semgrep-core-proprietary'.
+2025-05-12 04:16:09,285 - semgrep.rule_lang - DEBUG - semgrep-core validation response: valid=True
+2025-05-12 04:16:09,285 - semgrep.rule_lang - DEBUG - semgrep-core validation succeeded
+2025-05-12 04:16:09,285 - semgrep.rule_lang - DEBUG - RPC validation succeeded
+2025-05-12 04:16:09,286 - semgrep.config_resolver - DEBUG - loaded 1 configs in 1.3177618980407715
+2025-05-12 04:16:09,537 - semgrep.run_scan - VERBOSE - running 1250 rules from 1 config /home/runner/workspace/.config/.semgrep/semgrep_rules.json_0
+2025-05-12 04:16:09,537 - semgrep.run_scan - VERBOSE - No .semgrepignore found. Using default .semgrepignore rules. See the docs for the list of default ignores: https://semgrep.dev/docs/cli-usage/#ignore-files
+2025-05-12 04:16:09,540 - semgrep.run_scan - VERBOSE - Rules:
+2025-05-12 04:16:09,540 - semgrep.run_scan - VERBOSE - <SKIPPED DATA (too many entries; use --max-log-list-entries)>
+2025-05-12 04:16:10,313 - semgrep.core_runner - DEBUG - Passing whole rules directly to semgrep_core
+2025-05-12 04:16:10,590 - semgrep.core_runner - DEBUG - Running Semgrep engine with command:
+2025-05-12 04:16:10,590 - semgrep.core_runner - DEBUG - /tmp/_MEI3C29zQ/semgrep/bin/opengrep-core -json -rules /tmp/tmpmi3yjvvg.json -j 8 -targets /tmp/tmpoywhlypy -timeout 5 -timeout_threshold 3 -max_memory 0 -fast
+2025-05-12 04:16:17,103 - semgrep.core_runner - DEBUG - --- semgrep-core stderr ---
+[00.10][[34mINFO[0m]: Executed as: /tmp/_MEI3C29zQ/semgrep/bin/opengrep-core -json -rules /tmp/tmpmi3yjvvg.json -j 8 -targets /tmp/tmpoywhlypy -timeout 5 -timeout_threshold 3 -max_memory 0 -fast
+[00.10][[34mINFO[0m]: Version: 1.2.0
+[00.10][[34mINFO[0m]: Parsing rules in /tmp/tmpmi3yjvvg.json
+[01.12][[34mINFO[0m]: scan: processing 447 files (skipping 0), with 487 rules (skipping 0 )
+[04.17][[33mWARNING[0m]: Fixpoint timeout while performing taint analysis [rule: config..semgrep.vendored-rules.typescript.react.security.audit.react-href-var file: client/src/components/RegistrationForm.tsx func: ???]
+[0m[06.47][[34mINFO[0m]: Custom ignore pattern: None
+[06.47][[34mINFO[0m]: Custom ignore pattern: None
+--- end semgrep-core stderr ---
+2025-05-12 04:16:17,116 - semgrep.rule_match - DEBUG - match_key = ('', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = 0ee74fd49637bebe183eca7188dbde26e386314e62cc2e7ba1ee60b377b638243fcd84e6c6fa04886198ccacfa6a711bfbcc61a28f9ddc913d5b3c53083cbc90_0
+2025-05-12 04:16:17,116 - semgrep.rule_match - DEBUG - match_key = ('\n      type="text/javascript"\n      src="https://replit.com/public/js/replit-dev-banner.js" (?is).*integrity= (google-analytics\\.com|fonts\\.googleapis\\.com|fonts\\.gstatic\\.com|googletagmanager\\.com) .*rel\\s*=\\s*[\'"]?preconnect.* href="... :// ..." href="//..." href=\'... :// ...\' href=\'//...\' src="... :// ..." src="//..." src=\'... :// ...\' src=\'//...\' <link \n      type="text/javascript"\n      src="https://replit.com/public/js/replit-dev-banner.js" > <script \n      type="text/javascript"\n      src="https://replit.com/public/js/replit-dev-banner.js" >...</script>', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = 0c462f34c2e5c0115c98099a09d5fde04ba5aac86f96eda89dc79e1650b67f17507e9f0d764590150610e5e58e4f87c72431ae06d0266dd4ca65d989374ab76e_0
+2025-05-12 04:16:17,117 - semgrep.rule_match - DEBUG - match_key = ('\n      type="text/javascript"\n      src="https://replit.com/public/js/replit-dev-banner.js" (?is).*integrity= (google-analytics\\.com|fonts\\.googleapis\\.com|fonts\\.gstatic\\.com|googletagmanager\\.com) .*rel\\s*=\\s*[\'"]?preconnect.* href="... :// ..." href="//..." href=\'... :// ...\' href=\'//...\' src="... :// ..." src="//..." src=\'... :// ...\' src=\'//...\' <link \n      type="text/javascript"\n      src="https://replit.com/public/js/replit-dev-banner.js" > <script \n      type="text/javascript"\n      src="https://replit.com/public/js/replit-dev-banner.js" >...</script>', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = 0c462f34c2e5c0115c98099a09d5fde04ba5aac86f96eda89dc79e1650b67f17507e9f0d764590150610e5e58e4f87c72431ae06d0266dd4ca65d989374ab76e_0
+2025-05-12 04:16:17,117 - semgrep.rule_match - DEBUG - match_key = ('\n      type="text/javascript"\n      src="https://replit.com/public/js/replit-dev-banner.js" (?is).*integrity= (google-analytics\\.com|fonts\\.googleapis\\.com|fonts\\.gstatic\\.com|googletagmanager\\.com) .*rel\\s*=\\s*[\'"]?preconnect.* href="... :// ..." href="//..." href=\'... :// ...\' href=\'//...\' src="... :// ..." src="//..." src=\'... :// ...\' src=\'//...\' <link \n      type="text/javascript"\n      src="https://replit.com/public/js/replit-dev-banner.js" > <script \n      type="text/javascript"\n      src="https://replit.com/public/js/replit-dev-banner.js" >...</script>', PosixPath('client/index.html'), 'config..semgrep.vendored-rules.html.security.audit.missing-integrity') match_id = 0c462f34c2e5c0115c98099a09d5fde04ba5aac86f96eda89dc79e1650b67f17507e9f0d764590150610e5e58e4f87c72431ae06d0266dd4ca65d989374ab76e_0
+2025-05-12 04:16:17,120 - semgrep.core_runner - DEBUG - semgrep ran in 0:00:06.806747 on 169 files
+2025-05-12 04:16:17,123 - semgrep.core_runner - DEBUG - findings summary: 1 warning, 0 error, 0 info
+2025-05-12 04:16:17,129 - semgrep.app.auth - DEBUG - Getting API token from settings file
+2025-05-12 04:16:17,129 - semgrep.app.auth - DEBUG - No API token found in settings file
+2025-05-12 04:16:17,129 - semgrep.semgrep_core - DEBUG - Failed to open resource semgrep-core-proprietary: [Errno 2] No such file or directory: '/tmp/_MEI3C29zQ/semgrep/bin/semgrep-core-proprietary'.
+2025-05-12 04:16:17,242 - semgrep.output - VERBOSE - 
+========================================
+Files skipped:
+========================================
+
+  Always skipped by Opengrep:
+
+   • <none>
+
+  Skipped by .gitignore:
+  (Disable by passing --no-git-ignore)
+
+   • <all files not listed by `git ls-files` were skipped>
+
+  Skipped by .semgrepignore:
+  - https://semgrep.dev/docs/ignoring-files-folders-code/#understand-semgrep-defaults
+
+   • <none>
+
+  Skipped by --include patterns:
+
+   • <none>
+
+  Skipped by --exclude patterns:
+
+   • <none>
+
+  Files skipped due to insufficient read permissions:
+
+   • <none>
+
+  Skipped by limiting to files smaller than 1000000 bytes:
+  (Adjust with the --max-target-bytes flag)
+
+   • attached_assets/481658961_924190416568241_8209967177483676678_n.jpg
+   • attached_assets/481669276_922157023438247_8712901074579883240_n.jpg
+   • attached_assets/481670467_924188043235145_6133843336931895207_n.jpg
+   • attached_assets/481774150_924189233235026_6059054713111046316_n.jpg
+   • attached_assets/481775531_924190173234932_7293576038941216848_n.jpg
+   • attached_assets/481776657_923612889959327_5956490530320706811_n.jpg
+   • attached_assets/481785461_922706960049920_7577861548638452234_n.jpg
+   • attached_assets/481914332_924188296568453_4147828020214817037_n.jpg
+   • attached_assets/482353475_924192896567993_4444384978929572157_n.jpg
+   • attached_assets/487407341_942303264756956_7863574062028340197_n.jpg
+   • client/src/assets/gallery/481658961_924190416568241_8209967177483676678_n.jpg
+   • client/src/assets/gallery/481669276_922157023438247_8712901074579883240_n.jpg
+   • client/src/assets/gallery/481670467_924188043235145_6133843336931895207_n.jpg
+   • client/src/assets/gallery/481774150_924189233235026_6059054713111046316_n.jpg
+   • client/src/assets/gallery/481775531_924190173234932_7293576038941216848_n.jpg
+   • client/src/assets/gallery/481776657_923612889959327_5956490530320706811_n.jpg
+   • client/src/assets/gallery/481785461_922706960049920_7577861548638452234_n.jpg
+   • client/src/assets/gallery/481914332_924188296568453_4147828020214817037_n.jpg
+   • client/src/assets/gallery/482353475_924192896567993_4444384978929572157_n.jpg
+   • client/src/assets/gallery/487407341_942303264756956_7863574062028340197_n.jpg
+   • public/gallery-images/481658961_924190416568241_8209967177483676678_n.jpg
+   • public/gallery-images/481669276_922157023438247_8712901074579883240_n.jpg
+   • public/gallery-images/481670467_924188043235145_6133843336931895207_n.jpg
+   • public/gallery-images/481774150_924189233235026_6059054713111046316_n.jpg
+   • public/gallery-images/481775531_924190173234932_7293576038941216848_n.jpg
+   • public/gallery-images/481776657_923612889959327_5956490530320706811_n.jpg
+   • public/gallery-images/481785461_922706960049920_7577861548638452234_n.jpg
+   • public/gallery-images/481914332_924188296568453_4147828020214817037_n.jpg
+   • public/gallery-images/482353475_924192896567993_4444384978929572157_n.jpg
+   • public/gallery-images/487407341_942303264756956_7863574062028340197_n.jpg
+   • public/images/481658961_924190416568241_8209967177483676678_n.jpg
+   • public/images/481669276_922157023438247_8712901074579883240_n.jpg
+   • public/images/481670467_924188043235145_6133843336931895207_n.jpg
+   • public/images/481774150_924189233235026_6059054713111046316_n.jpg
+   • public/images/481775531_924190173234932_7293576038941216848_n.jpg
+   • public/images/481776657_923612889959327_5956490530320706811_n.jpg
+   • public/images/481785461_922706960049920_7577861548638452234_n.jpg
+   • public/images/481914332_924188296568453_4147828020214817037_n.jpg
+   • public/images/482353475_924192896567993_4444384978929572157_n.jpg
+   • public/images/487407341_942303264756956_7863574062028340197_n.jpg
+
+  Partially analyzed due to parsing or internal Opengrep errors
+
+   • tailwind.config.ts (1 lines skipped)
+
+2025-05-12 04:16:17,243 - semgrep.output - INFO - Some files were skipped or only partially analyzed.
+  Scan was limited to files tracked by git.
+  Partially scanned: 1 files only partially analyzed due to parsing or internal Opengrep errors
+  Scan skipped: 40 files larger than 1.0 MB
+  For a full list of skipped files, run opengrep with the --verbose flag.
+
+Ran 443 rules on 169 files: 1 finding.
+2025-05-12 04:16:17,243 - semgrep.app.version - DEBUG - Version cache does not exist
+2025-05-12 04:16:17,270 - semgrep.metrics - VERBOSE - Not sending pseudonymous metrics since metrics are configured to OFF and registry usage is False
